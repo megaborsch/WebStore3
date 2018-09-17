@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+
+@section top{
+
+    @await Html.PartialAsync("Partial/_Slider");
+}
+
+@await Html.PartialAsync("Partial/_FeaturedItems")
+@await Html.PartialAsync("Partial/_CategoryTab")
+@await Html.PartialAsync("Partial/_RecommendedItems")

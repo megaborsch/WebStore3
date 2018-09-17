@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+
+@model IEnumerable<EmployeeView>
+@{
+    ViewBag.Title = "EmployeeList";
+}
+
+<div class="container">
+    <hr />
+    <a asp-action="Edit" class="btn btn-success">Добавить</a>
+    <hr />
+
+    <table class="table table-bordered">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+            <td>@item.FirstName</td>
+            <td>@item.SurName</td>
+            <td>@item.Patronymic</td>
+            <td>@item.Age</td>
+            <td><a asp-action="Details" asp-route-id="@item.Id">Детали</a></td>
+            <td><a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-cut"></i></a></td>
+
+        </tr>
+        }
+    </table>
+</div>
+
+
+
