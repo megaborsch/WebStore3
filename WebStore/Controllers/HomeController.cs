@@ -15,12 +15,12 @@ namespace WebStore.Controllers
         }
         
 
-        public IActionResult Details()
-        {
-            return View();
-        }
+        //public IActionResult Details()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult Shop() { return View(); }
+        //public IActionResult Shop() { return View(); }
         
         public IActionResult Login() { return View(); }
         public IActionResult ContactUs() { return View(); }
