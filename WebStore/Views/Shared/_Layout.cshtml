@@ -1,8 +1,4 @@
 ﻿
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +26,7 @@
     <link rel="apple-touch-icon-precomposed" href="~/template/images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <body>
-    @await Html.PartialAsync("Partial/_Header")
+    @await Html.PartialAsync("_Header")
     
     
     <section>
@@ -39,7 +35,7 @@
         </div>
 
     </section>
-    @await Html.PartialAsync("Partial/_Footer")
+    @await Html.PartialAsync("_Footer")
 
 
 
