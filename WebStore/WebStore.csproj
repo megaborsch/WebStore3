@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebStore.Domain\WebStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Views\Home\Blog.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -25,7 +29,7 @@
     <Content Update="Views\Home\Contact.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Home\Details.cshtml">
+    <Content Update="Views\Catalog\Details.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Home\Login.cshtml">
@@ -34,7 +38,7 @@
     <Content Update="Views\Home\NotFound.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Home\Shop.cshtml">
+    <Content Update="Views\Catalog\Shop.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Shared\Partial\_LeftSideBar.cshtml">

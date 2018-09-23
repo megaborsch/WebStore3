@@ -100,7 +100,16 @@ namespace WebStore.Controllers
         [Route("edit/{id?}")]
         public IActionResult Edit(EmployeeView model)
         {
-            if (model.Id > 0)
+            //собственная проверка
+            if (model.Age < 18 || model.Age > 75)
+            {
+                ModelState.AddModelError("Age", "Ошибка возраста!");
+            }
+            // Проверяем модель на валидность
+            if (ModelState.IsValid)
+            {
+
+                if (model.Id > 0)
             {
                 var dbItem = _employeesData.GetById(model.Id);
                 if (ReferenceEquals(dbItem, null))
@@ -109,7 +118,7 @@ namespace WebStore.Controllers
                 dbItem.SurName = model.SurName;
                 dbItem.Age = model.Age;
                 dbItem.Patronymic = model.Patronymic;
-                dbItem.Nickname = dbItem.Nickname;
+                dbItem.Nickname = model.Nickname;
             }
             else
             {
@@ -117,12 +126,20 @@ namespace WebStore.Controllers
             }
             _employeesData.Commit();
             return RedirectToAction(nameof(Index));
-        }        [Route("delete/{id}")]
+            }
+            // Если не валидна, возвращаем её на представление
+            return View(model);
+        }
+
+
+        [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
             _employeesData.Delete(id);
             return RedirectToAction(nameof(Index));
-        }
+        }
+
+
 
 
     }

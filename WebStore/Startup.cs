@@ -28,7 +28,9 @@ namespace WebStore
             services.AddMvc();
 
             // Добавляем разрешение зависимости
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            services.AddSingleton<IProductData, InMemoryProductData>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +42,8 @@ namespace WebStore
             }
 
             app.UseStaticFiles();
-            app.UseWelcomePage("/welcome");
+            app.UseWelcomePage("/welcome");
+
             //var hello = Configuration["CustomHelloWorld"];
             //app.Run(async (context) =>
             //{
