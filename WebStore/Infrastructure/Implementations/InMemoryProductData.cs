@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebStore.Domain.Models;
-using WebStore.Domain.Filters;
+using WebStore.DomainNew.Models;
+using WebStore.DomainNew.Filters;
 using WebStore.Infrastructure.Interfaces;
 
 namespace WebStore.Infrastructure.Implementations
@@ -406,7 +406,9 @@ namespace WebStore.Infrastructure.Implementations
         public IEnumerable<Brand> GetBrands()
         {
             return _brands;
-        }        public IEnumerable<Product> GetProducts(ProductFilter filter)
+        }
+
+        public IEnumerable<Product> GetProducts(ProductFilter filter)
         {
             var products = _products;
             if (filter.SectionId.HasValue)
@@ -414,6 +416,7 @@ namespace WebStore.Infrastructure.Implementations
             if (filter.BrandId.HasValue)
                 products = products.Where(p => p.BrandId.HasValue && p.BrandId.Value.Equals(filter.BrandId.Value)).ToList();
             return products;
-        }
+        }
+
     }
 }

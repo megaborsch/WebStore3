@@ -20,10 +20,12 @@ namespace WebStore.Models
         [Display(Name = "Отчество")]
         public string Patronymic { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Возраст является обязательным")]
-        [Display(Name = "Возраст")]
+        [Display(Name = "Возраст")]
+
         public int Age { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Ник является обязательным")]
-        [Display(Name = "Никнейм")]
+        [Display(Name = "Никнейм")]
+
         public string Nickname { get; set; }
 
     }

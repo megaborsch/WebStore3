@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 using WebStore.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebStore.Controllers
 {
     [Route("users")]
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeesData _employeesData;
@@ -81,6 +83,7 @@ namespace WebStore.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("edit/{id?}")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int? id)
         {
             EmployeeView model;
@@ -98,13 +101,15 @@ namespace WebStore.Controllers
         }
         [HttpPost]
         [Route("edit/{id?}")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Edit(EmployeeView model)
         {
             //собственная проверка
             if (model.Age < 18 || model.Age > 75)
             {
                 ModelState.AddModelError("Age", "Ошибка возраста!");
-            }
+            }
+
             // Проверяем модель на валидность
             if (ModelState.IsValid)
             {
@@ -128,11 +133,13 @@ namespace WebStore.Controllers
             return RedirectToAction(nameof(Index));
             }
             // Если не валидна, возвращаем её на представление
-            return View(model);
+            return View(model);
+
         }
 
 
         [Route("delete/{id}")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete(int id)
         {
             _employeesData.Delete(id);
