@@ -1,2 +1,11 @@
 
 *.cache
+.vs
+WebStore/bin
+WebStore/obj
+WebStore.Domain/bin
+WebStore.Domain/obj
+WebStore.DomainNew/bin
+WebStore.DomainNew/obj
+WebStore.DAL/bin
+WebStore.DAL/obj

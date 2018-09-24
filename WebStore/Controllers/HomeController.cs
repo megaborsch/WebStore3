@@ -22,7 +22,7 @@ namespace WebStore.Controllers
 
         //public IActionResult Shop() { return View(); }
         
-        public IActionResult Login() { return View(); }
+        //public IActionResult Login() { return View(); }
         public IActionResult ContactUs() { return View(); }
         public IActionResult Checkout() { return View(); }
         public IActionResult Cart()
