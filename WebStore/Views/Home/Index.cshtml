@@ -1,14 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "Home";
+﻿@{
+    ViewData["Title"] = "E-shopper";
 }
+@await Html.PartialAsync("Partial/_Slider")
 
-
-@section top{
-
-    @await Html.PartialAsync("Partial/_Slider");
-}
-
-@await Html.PartialAsync("Partial/_FeaturedItems")
-@await Html.PartialAsync("Partial/_CategoryTab")
-@await Html.PartialAsync("Partial/_RecommendedItems")
+<section>
+    <div class="row">
+        <div class="col-sm-3">
+            @await Html.PartialAsync("Partial/_LeftSideBar")
+        </div>
+        <div class="col-sm-9 padding-right">
+            @await Html.PartialAsync("Partial/_FeaturedItems")
+            @await Html.PartialAsync("Partial/_CategoryTab")
+            @await Html.PartialAsync("Partial/_RecommendedItems")
+        </div>
+    </div>
+</section>
+sync("Partial/_RecommendedItems")
