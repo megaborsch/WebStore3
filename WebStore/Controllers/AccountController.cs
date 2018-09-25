@@ -68,6 +68,7 @@ namespace WebStore.Controllers
                 if (createResult.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);//если успешно - производим логин
+                    await _userManager.AddToRoleAsync(user, Constants.Roles.User);// добавляем роль пользователю
                     return RedirectToAction("Index", "Home");
                 }
                 else//иначе
