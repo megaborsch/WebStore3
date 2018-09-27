@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebStore.Models;
 using WebStore.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using WebStore.DomainNew.Models;
 
 namespace WebStore.Controllers
 {
@@ -83,7 +84,7 @@ namespace WebStore.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("edit/{id?}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Edit(int? id)
         {
             EmployeeView model;
@@ -101,7 +102,7 @@ namespace WebStore.Controllers
         }
         [HttpPost]
         [Route("edit/{id?}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Edit(EmployeeView model)
         {
             //собственная проверка
@@ -139,7 +140,7 @@ namespace WebStore.Controllers
 
 
         [Route("delete/{id}")]
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = Constants.Roles.Administrator)]
         public IActionResult Delete(int id)
         {
             _employeesData.Delete(id);

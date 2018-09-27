@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DomainNew.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace WebStore.DAL.Context
 {
     public class WebStoreContext : IdentityDbContext<User>
