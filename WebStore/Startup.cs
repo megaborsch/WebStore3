@@ -34,7 +34,8 @@ namespace WebStore
             // Добавляем разрешение зависимости
             services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
-            services.AddScoped<IProductData, SqlProductData>();
+            services.AddTransient<IProductData, SqlProductData>();
+            services.AddTransient<IOrdersService, SqlOrdersService>();
 
             services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
@@ -70,7 +71,8 @@ namespace WebStore
             });
             //Настройки для корзины
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ICartService, CookieCartService>();
+            services.AddTransient<ICartService, CookieCartService>();
+
 
 
 
@@ -95,6 +97,10 @@ namespace WebStore
             //});
             app.UseMvc(routes =>
                 {
+                    routes.MapRoute(
+                       name: "areas",
+                       template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                     );
                     routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 }
                 );
