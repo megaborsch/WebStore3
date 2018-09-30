@@ -10,7 +10,8 @@ using WebStore.Models.Product;
 
 namespace WebStore.Infrastructure.Implementations
 {
-    public class CookieCartService : ICartService
+    public class CookieCartService : ICartService
+
     {
         private readonly IProductData _productData;
         private readonly IHttpContextAccessor _httpContextAccessor;
