@@ -1,0 +1,14 @@
+
+*.cache
+.vs
+WebStore/bin
+WebStore/obj
+WebStore.Domain/bin
+WebStore.Domain/obj
+WebStore.DomainNew/bin
+WebStore.DomainNew/obj
+WebStore.DAL/bin
+WebStore.DAL/obj
+.vs/WebStore/v15/.suo
+.vs/WebStore/DesignTimeBuild/.dtbcache
+NewDataBase_log.ldf
