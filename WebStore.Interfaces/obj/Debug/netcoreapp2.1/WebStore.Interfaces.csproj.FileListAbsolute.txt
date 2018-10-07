@@ -1,0 +1,12 @@
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\bin\Debug\netcoreapp2.1\WebStore.Interfaces.deps.json
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\bin\Debug\netcoreapp2.1\WebStore.Interfaces.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\bin\Debug\netcoreapp2.1\WebStore.Interfaces.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\bin\Debug\netcoreapp2.1\WebStore.DomainNew.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\bin\Debug\netcoreapp2.1\WebStore.DomainNew.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.csprojAssemblyReference.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.csproj.CoreCompileInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.AssemblyInfoInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.AssemblyInfo.cs
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.csproj.CopyComplete
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Interfaces\obj\Debug\netcoreapp2.1\WebStore.Interfaces.pdb

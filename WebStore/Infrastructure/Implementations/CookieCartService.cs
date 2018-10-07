@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using WebStore.DomainNew.Filters;
-using WebStore.Infrastructure.Interfaces;
-using WebStore.Models.Cart;
-using WebStore.Models.Product;
+using WebStore.Interfaces;
+using WebStore.DomainNew.Models.Cart;
+using WebStore.DomainNew.Models.Product;
 
 namespace WebStore.Infrastructure.Implementations
 {

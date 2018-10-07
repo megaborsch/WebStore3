@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
-using WebStore.DomainNew.Models;
+using WebStore.DomainNew.Entities;
 
 namespace WebStore.Data
 {
