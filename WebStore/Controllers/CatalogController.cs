@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.DomainNew.Filters;
-using WebStore.Infrastructure.Interfaces;
-using WebStore.Models.Product;
+using WebStore.Interfaces;
+using WebStore.DomainNew.Models.Product;
 
 namespace WebStore.Controllers
 {
@@ -53,7 +53,8 @@ namespace WebStore.Controllers
                 Order = product.Order,
                 Price = product.Price,
                 Brand = product.Brand != null ? product.Brand.Name : string.Empty
-            });
+            });
+
         }
     }
 }

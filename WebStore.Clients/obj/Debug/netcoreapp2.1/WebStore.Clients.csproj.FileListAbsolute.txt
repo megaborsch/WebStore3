@@ -1,0 +1,14 @@
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.Clients.deps.json
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.Clients.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.csproj.CoreCompileInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.AssemblyInfoInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.AssemblyInfo.cs
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.csprojAssemblyReference.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.Clients.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.DomainNew.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.Interfaces.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.Interfaces.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\bin\Debug\netcoreapp2.1\WebStore.DomainNew.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.csproj.CopyComplete
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Clients\obj\Debug\netcoreapp2.1\WebStore.Clients.pdb

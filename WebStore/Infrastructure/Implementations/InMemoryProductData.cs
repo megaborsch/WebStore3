@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.DomainNew.Models;
 using WebStore.DomainNew.Filters;
-using WebStore.Infrastructure.Interfaces;
+using WebStore.Interfaces;
 
 namespace WebStore.Infrastructure.Implementations
 {

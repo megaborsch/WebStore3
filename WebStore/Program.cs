@@ -11,10 +11,13 @@ using Microsoft.Extensions.Logging;
 using WebStore.Data;
 using WebStore.DAL.Context;
 using Microsoft.Extensions.DependencyInjection;
-using WebStore.DomainNew.Models;
+using WebStore.DomainNew.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using WebStore.DomainNew.Models;
+
 
 namespace WebStore
 {
@@ -33,8 +36,10 @@ namespace WebStore
                     DbInitializer.Initialize(context);
                     var roleStore = new RoleStore<IdentityRole>(context);
                     var roleManager = new RoleManager<IdentityRole>(roleStore,
-                    new IRoleValidator<IdentityRole>[] { },                    new UpperInvariantLookupNormalizer(),
-                    new IdentityErrorDescriber(), null);                    if (!roleManager.RoleExistsAsync(Constants.Roles.User).Result)
+                    new IRoleValidator<IdentityRole>[] { },
+                    new UpperInvariantLookupNormalizer(),
+                    new IdentityErrorDescriber(), null);
+                    if (!roleManager.RoleExistsAsync(Constants.Roles.User).Result)
                     {
                     var role = new IdentityRole(Constants.Roles.User);
                     var result = roleManager.CreateAsync(role).Result;

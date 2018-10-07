@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using WebStore.DomainNew.Entities;
+using WebStore.DomainNew.Models.Account;
 using WebStore.DomainNew.Models;
-using WebStore.Models.Account;
 
 namespace WebStore.Controllers
 {

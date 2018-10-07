@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebStore.Models;
-using WebStore.Infrastructure.Interfaces;
+using WebStore.DomainNew.Models;
+using WebStore.Interfaces;
 
 namespace WebStore.Infrastructure.Implementations
 {

@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebStore.DAL.Context;
-using WebStore.DomainNew.Models;
-using WebStore.Infrastructure.Interfaces;
+using WebStore.DomainNew.Entities;
+using WebStore.Interfaces;
 using WebStore.Infrastructure.Implementations;
 using WebStore.Infrastructure.Implementations.Sql;
 using Microsoft.EntityFrameworkCore;
+using WebStore.Interfaces.Api;
+using WebStore.Clients.Services.Values;
 
 namespace WebStore
 {
@@ -73,6 +75,8 @@ namespace WebStore
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ICartService, CookieCartService>();
 
+
+            services.AddTransient<IValuesService, ValuesClient>();
 
 
 
