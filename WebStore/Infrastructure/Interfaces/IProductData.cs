@@ -13,5 +13,8 @@ namespace WebStore.Infrastructure.Interfaces
         IEnumerable<Brand> GetBrands();
         IEnumerable<Product> GetProducts(ProductFilter filter);
         Product GetProductById(int id);
+        Product EditProduct(Product Product);
+        Product CreateProduct(Product Product);
+        void DeleteProductById(int id);
     }
 }

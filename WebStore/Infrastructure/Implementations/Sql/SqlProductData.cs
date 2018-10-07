@@ -59,5 +59,48 @@ namespace WebStore.Infrastructure.Implementations.Sql
             return _context.Products.Include("Brand").Include("Section").FirstOrDefault(p => p.Id.Equals(id));
         }
 
+        public void DeleteProductById(int id)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                _context.Products.Remove(GetProductById(id));
+                _context.SaveChanges();
+                transaction.Commit();
+                
+            }
+
+        }
+
+        public Product CreateProduct(Product product)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                if (_context.Products.Last() != null)
+                { product.Order = _context.Products.Last().Order + 1; }
+                else
+                {
+                    product.Order = 1;
+                }
+                _context.Products.Add(product);
+            
+            _context.SaveChanges();
+            transaction.Commit();
+            return product;
+            }
+        }
+
+        public Product EditProduct(Product product)
+        {
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                
+                _context.Products.Update(product);
+
+                _context.SaveChanges();
+                transaction.Commit();
+                return product;
+            }
+        }
+
     }
 }
