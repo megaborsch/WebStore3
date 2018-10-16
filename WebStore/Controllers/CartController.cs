@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 using WebStore.DomainNew.Models.Cart;
 using WebStore.DomainNew.Models.Order;
 

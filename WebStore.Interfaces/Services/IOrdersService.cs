@@ -6,7 +6,7 @@ using WebStore.DomainNew.Entities;
 using WebStore.DomainNew.Models.Cart;
 using WebStore.DomainNew.Models.Order;
 
-namespace WebStore.Interfaces
+namespace WebStore.Interfaces.Services
 {
     public interface IOrdersService
     {

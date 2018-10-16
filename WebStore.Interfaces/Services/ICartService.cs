@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using WebStore.DomainNew.Models.Cart;
 
-namespace WebStore.Interfaces
+namespace WebStore.Interfaces.Services
 {
     public interface ICartService
     {

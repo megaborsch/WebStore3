@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WebStore.DAL.Context;
+using Microsoft.EntityFrameworkCore;
+using WebStore.Interfaces.Services;using WebStore.Services.InMemory;
+using WebStore.Services.Sql;
 
 namespace WebStore.ServicesHosting
 {
@@ -25,6 +29,15 @@ namespace WebStore.ServicesHosting
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // Добавляем EF Core
+            services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")));
+
+            // Добавляем разрешение зависимостей
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+
+            services.AddTransient<IProductData, SqlProductData>();
+            services.AddTransient<IOrdersService, SqlOrdersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

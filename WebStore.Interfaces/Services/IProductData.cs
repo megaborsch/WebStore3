@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using WebStore.DomainNew.Entities;
 using WebStore.DomainNew.Filters;
 
-namespace WebStore.Interfaces
+namespace WebStore.Interfaces.Services
 {
     public interface IProductData
     {

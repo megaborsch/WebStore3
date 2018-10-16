@@ -10,12 +10,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebStore.DAL.Context;
 using WebStore.DomainNew.Entities;
-using WebStore.Interfaces;
-using WebStore.Infrastructure.Implementations;
-using WebStore.Infrastructure.Implementations.Sql;
 using Microsoft.EntityFrameworkCore;
-using WebStore.Interfaces.Api;
-using WebStore.Clients.Services.Values;
+using WebStore.Clients.Services.Employees;
+//using WebStore.Clients.Services.Products;
+using WebStore.Services.Sql;
+using WebStore.Interfaces.Services;
+using WebStore.Infrastructure.Implementations;
+using WebStore.DomainNew.Entities;
 
 namespace WebStore
 {
@@ -34,7 +35,7 @@ namespace WebStore
             services.AddMvc();
 
             // Добавляем разрешение зависимости
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IEmployeesData, EmployeesClient>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<IOrdersService, SqlOrdersService>();
@@ -73,10 +74,9 @@ namespace WebStore
             });
             //Настройки для корзины
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<ICartService, CookieCartService>();
+            services.AddScoped<ICartService, CookieCartService>();
 
-
-            services.AddTransient<IValuesService, ValuesClient>();
+            
 
 
 

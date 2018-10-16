@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.DomainNew.Filters;
-using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 using WebStore.DomainNew.Models.Product;
 
 namespace WebStore.Controllers

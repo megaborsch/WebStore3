@@ -5,7 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Api\IValuesService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebStore.DomainNew\WebStore.DomainNew.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\" />
   </ItemGroup>
 
 </Project>

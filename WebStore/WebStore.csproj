@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Infrastructure\Interfaces\**" />
+    <Compile Remove="Infrastructure\**" />
     <Compile Remove="Models\**" />
-    <Content Remove="Infrastructure\Interfaces\**" />
+    <Content Remove="Infrastructure\**" />
     <Content Remove="Models\**" />
-    <EmbeddedResource Remove="Infrastructure\Interfaces\**" />
+    <EmbeddedResource Remove="Infrastructure\**" />
     <EmbeddedResource Remove="Models\**" />
-    <None Remove="Infrastructure\Interfaces\**" />
+    <None Remove="Infrastructure\**" />
     <None Remove="Models\**" />
   </ItemGroup>
 
@@ -26,6 +26,7 @@
     <ProjectReference Include="..\WebStore.DAL\WebStore.DAL.csproj" />
     <ProjectReference Include="..\WebStore.DomainNew\WebStore.DomainNew.csproj" />
     <ProjectReference Include="..\WebStore.Interfaces\WebStore.Interfaces.csproj" />
+    <ProjectReference Include="..\WebStore.Services\WebStore.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

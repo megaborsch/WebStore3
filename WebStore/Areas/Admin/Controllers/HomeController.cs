@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebStore.DomainNew.Filters;
-using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 using WebStore.DomainNew.Entities;
 
 namespace WebStore.Areas.Admin.Controllers

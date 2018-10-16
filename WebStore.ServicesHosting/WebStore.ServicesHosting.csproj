@@ -5,11 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ValuesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebStore.DAL\WebStore.DAL.csproj" />
+    <ProjectReference Include="..\WebStore.DomainNew\WebStore.DomainNew.csproj" />
+    <ProjectReference Include="..\WebStore.Interfaces\WebStore.Interfaces.csproj" />
+    <ProjectReference Include="..\WebStore.Services\WebStore.Services.csproj" />
   </ItemGroup>
 
 </Project>

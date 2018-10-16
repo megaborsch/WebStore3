@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using WebStore.Interfaces;
+using WebStore.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using WebStore.DomainNew.Models;
 using WebStore.DomainNew.Entities;
@@ -118,20 +118,20 @@ namespace WebStore.Controllers
 
                 if (model.Id > 0)
             {
-                var dbItem = _employeesData.GetById(model.Id);
-                if (ReferenceEquals(dbItem, null))
-                    return NotFound();// возвращаем результат 404 Not Found
-                dbItem.FirstName = model.FirstName;
-                dbItem.SurName = model.SurName;
-                dbItem.Age = model.Age;
-                dbItem.Patronymic = model.Patronymic;
-                dbItem.Nickname = model.Nickname;
+                    //var dbItem = _employeesData.GetById(model.Id);
+                    //if (ReferenceEquals(dbItem, null))
+                    //    return NotFound();// возвращаем результат 404 Not Found
+                    //dbItem.FirstName = model.FirstName;
+                    //dbItem.SurName = model.SurName;
+                    //dbItem.Age = model.Age;
+                    //dbItem.Patronymic = model.Patronymic;
+                    //dbItem.Nickname = model.Nickname;
+                    _employeesData.UpdateEmployee(model.Id, model);
             }
             else
             {
                 _employeesData.AddNew(model);
             }
-            _employeesData.Commit();
             return RedirectToAction(nameof(Index));
             }
             // Если не валидна, возвращаем её на представление
