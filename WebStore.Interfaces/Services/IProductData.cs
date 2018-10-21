@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebStore.DomainNew.Entities;
+using WebStore.DomainNew.Dto.Product;
 using WebStore.DomainNew.Filters;
 
 namespace WebStore.Interfaces.Services
 {
     public interface IProductData
     {
-        IEnumerable<Section> GetSections();
-        IEnumerable<Brand> GetBrands();
-        IEnumerable<Product> GetProducts(ProductFilter filter);
-        Product GetProductById(int id);
-        Product EditProduct(Product Product);
-        Product CreateProduct(Product Product);
-        void DeleteProductById(int id);
+        IEnumerable<SectionDto> GetSections();
+        IEnumerable<BrandDto> GetBrands();
+        IEnumerable<ProductDto> GetProducts(ProductFilter filter);
+        ProductDto GetProductById(int id);
+        //ProductDto EditProduct(ProductDto Product);
+        //ProductDto CreateProduct(ProductDto Product);
+        //void DeleteProductById(int id);
     }
 }

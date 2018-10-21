@@ -12,6 +12,8 @@ using WebStore.DAL.Context;
 using WebStore.DomainNew.Entities;
 using Microsoft.EntityFrameworkCore;
 using WebStore.Clients.Services.Employees;
+using WebStore.Clients.Services.Products;
+using WebStore.Clients.Services.Orders;
 //using WebStore.Clients.Services.Products;
 using WebStore.Services.Sql;
 using WebStore.Interfaces.Services;
@@ -37,8 +39,8 @@ namespace WebStore
             // Добавляем разрешение зависимости
             services.AddTransient<IEmployeesData, EmployeesClient>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
-            services.AddTransient<IProductData, SqlProductData>();
-            services.AddTransient<IOrdersService, SqlOrdersService>();
+            services.AddTransient<IProductData, ProductsClient>();
+            services.AddTransient<IOrdersService, OrdersClient>();
 
             services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));

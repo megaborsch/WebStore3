@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.DAL.Context;
 using WebStore.DomainNew.Filters;
-using WebStore.DomainNew.Entities;
+using WebStore.DomainNew.Dto.Product;
 using WebStore.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,14 +19,25 @@ namespace WebStore.Services.Sql
             _context = context;
         }
 
-        public IEnumerable<Section> GetSections()
+        public IEnumerable<SectionDto> GetSections()
         {
-            return _context.Sections.ToList();
+            return _context.Sections.Select(s => new SectionDto()
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Order = s.Order,
+                ParentId = s.ParentId
+            }).ToList();
         }
 
-        public IEnumerable<Brand> GetBrands()
+        public IEnumerable<BrandDto> GetBrands()
         {
-            return _context.Brands.ToList();
+            return _context.Brands.Select(b => new BrandDto()
+            {
+                Id = b.Id,
+                Name = b.Name,
+                Order = b.Order
+            }).ToList();
         }
 
         //public IEnumerable<Product> GetProducts(ProductFilter filter)
@@ -40,7 +51,7 @@ namespace WebStore.Services.Sql
 
         //    return query.ToList();
         //}
-        public IEnumerable<Product> GetProducts(ProductFilter filter)
+        public IEnumerable<ProductDto> GetProducts(ProductFilter filter)
         {
             var query = _context.Products.Include("Brand").Include("Section").AsQueryable();
             if (filter.Ids !=null && filter.Ids.Count > 0)
@@ -52,55 +63,81 @@ namespace WebStore.Services.Sql
                 c.BrandId.Value.Equals(filter.BrandId.Value));
             if (filter.SectionId.HasValue)
                 query = query.Where(c => c.SectionId.Equals(filter.SectionId.Value));
-            return query.ToList();
-        }
-        public Product GetProductById(int id)
-        {
-            return _context.Products.Include("Brand").Include("Section").FirstOrDefault(p => p.Id.Equals(id));
-        }
-
-        public void DeleteProductById(int id)
-        {
-            using (var transaction = _context.Database.BeginTransaction())
+            return query.Select(p => new ProductDto()
             {
-                _context.Products.Remove(GetProductById(id));
-                _context.SaveChanges();
-                transaction.Commit();
-                
-            }
-
+                Id = p.Id,
+                Name = p.Name,
+                Order = p.Order,
+                Price = p.Price,
+                ImageUrl = p.ImageUrl,
+                Brand = p.BrandId.HasValue ? new BrandDto() { Id = p.Brand.Id, Name = p.Brand.Name, Order = p.Order } : null
+            }).ToList();
         }
-
-        public Product CreateProduct(Product product)
+        public ProductDto GetProductById(int id)
         {
-            using (var transaction = _context.Database.BeginTransaction())
+            var product = _context.Products.Include("Brand").Include("Section").FirstOrDefault(p => p.Id.Equals(id));
+            if (product == null) return null;
+
+            var dto = new ProductDto()
             {
-                if (_context.Products.Last() != null)
-                { product.Order = _context.Products.Last().Order + 1; }
-                else
+                Id = product.Id,
+                Name = product.Name,
+                ImageUrl = product.ImageUrl,
+                Order = product.Order,
+                Price = product.Price
+            };
+            if (product.Brand != null)
+                dto.Brand = new BrandDto()
                 {
-                    product.Order = 1;
-                }
-                _context.Products.Add(product);
-            
-            _context.SaveChanges();
-            transaction.Commit();
-            return product;
-            }
+                    Id = product.Brand.Id,
+                    Name = product.Brand.Name,
+                    Order = product.Brand.Order
+                };
+            return dto;
         }
 
-        public Product EditProduct(Product product)
-        {
-            using (var transaction = _context.Database.BeginTransaction())
-            {
+    //    public void DeleteProductById(int id)
+    //    {
+    //        using (var transaction = _context.Database.BeginTransaction())
+    //        {
+    //            _context.Products.Remove(GetProductById(id));
+    //            _context.SaveChanges();
+    //            transaction.Commit();
                 
-                _context.Products.Update(product);
+    //        }
 
-                _context.SaveChanges();
-                transaction.Commit();
-                return product;
-            }
-        }
+    //    }
+
+    //    public ProductDto CreateProduct(ProductDto product)
+    //    {
+    //        using (var transaction = _context.Database.BeginTransaction())
+    //        {
+    //            if (_context.Products.Last() != null)
+    //            { product.Order = _context.Products.Last().Order + 1; }
+    //            else
+    //            {
+    //                product.Order = 1;
+    //            }
+    //            _context.Products.Add(product);
+            
+    //        _context.SaveChanges();
+    //        transaction.Commit();
+    //        return product;
+    //        }
+    //    }
+
+    //    public Product EditProduct(Product product)
+    //    {
+    //        using (var transaction = _context.Database.BeginTransaction())
+    //        {
+                
+    //            _context.Products.Update(product);
+
+    //            _context.SaveChanges();
+    //            transaction.Commit();
+    //            return product;
+    //        }
+    //    }
 
     }
 }

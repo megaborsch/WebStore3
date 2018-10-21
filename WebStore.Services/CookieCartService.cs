@@ -7,6 +7,7 @@ using WebStore.DomainNew.Filters;
 using WebStore.Interfaces.Services;
 using WebStore.DomainNew.Models.Cart;
 using WebStore.DomainNew.Models.Product;
+using WebStore.DomainNew.Dto.Order;
 
 namespace WebStore.Infrastructure.Implementations
 {
@@ -119,6 +120,19 @@ namespace WebStore.Infrastructure.Implementations
             };
             return r;
         }
-        
+        public List<OrderItemDto> TCart()
+        {
+            var orderItems = _productData.GetProducts(new ProductFilter()
+            {
+                Ids = Cart.Items.Select(i => i.ProductID).ToList()
+            }).Select(p => new OrderItemDto()
+            {
+                Id = p.Id,
+                Price = p.Price,
+                Quantity = Cart.Items.First(i => i.ProductID == p.Id).Quantity
+            }).ToList();
+
+            return orderItems;
+        }
     }
 }

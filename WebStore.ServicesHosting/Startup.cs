@@ -11,8 +11,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebStore.DAL.Context;
 using Microsoft.EntityFrameworkCore;
-using WebStore.Interfaces.Services;using WebStore.Services.InMemory;
+using WebStore.Interfaces.Services;
+using WebStore.Services.InMemory;
 using WebStore.Services.Sql;
+using Microsoft.AspNetCore.Identity;
+using WebStore.DomainNew.Entities;
 
 namespace WebStore.ServicesHosting
 {
@@ -38,6 +41,10 @@ namespace WebStore.ServicesHosting
 
             services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<IOrdersService, SqlOrdersService>();
+            // Настройка Identity
+            services.AddIdentity<User, IdentityRole>()
+            .AddEntityFrameworkStores<WebStoreContext>()
+            .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
