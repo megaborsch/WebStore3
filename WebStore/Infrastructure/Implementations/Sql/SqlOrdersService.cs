@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebStore.DAL.Context;
-using WebStore.DomainNew.Models;
-using WebStore.Infrastructure.Interfaces;
-using WebStore.Models.Cart;
-using WebStore.Models.Order;
+using WebStore.DomainNew.Entities;
+using WebStore.Interfaces;
+using WebStore.DomainNew.Models.Cart;
+using WebStore.DomainNew.Models.Order;
 
 namespace WebStore.Infrastructure.Implementations.Sql
 {

@@ -9,11 +9,17 @@ namespace WebStore.Controllers
     public class HomeController : Controller
     {
         
-        public IActionResult Index()
+
+        public HomeController()
+        {
+            
+        }
+
+        public async Task<IActionResult> Index()
         {
             return View();
         }
-        
+
 
         //public IActionResult Details()
         //{
@@ -21,7 +27,7 @@ namespace WebStore.Controllers
         //}
 
         //public IActionResult Shop() { return View(); }
-        
+
         //public IActionResult Login() { return View(); }
         public IActionResult ContactUs() { return View(); }
         public IActionResult Checkout() { return View(); }

@@ -9,11 +9,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebStore.DAL.Context;
-using WebStore.DomainNew.Models;
-using WebStore.Infrastructure.Interfaces;
-using WebStore.Infrastructure.Implementations;
-using WebStore.Infrastructure.Implementations.Sql;
+using WebStore.DomainNew.Entities;
 using Microsoft.EntityFrameworkCore;
+using WebStore.Clients.Services.Employees;
+using WebStore.Clients.Services.Products;
+using WebStore.Clients.Services.Orders;
+//using WebStore.Clients.Services.Products;
+using WebStore.Services.Sql;
+using WebStore.Interfaces.Services;
+using WebStore.Infrastructure.Implementations;
+using WebStore.DomainNew.Entities;
 
 namespace WebStore
 {
@@ -32,10 +37,10 @@ namespace WebStore
             services.AddMvc();
 
             // Добавляем разрешение зависимости
-            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IEmployeesData, EmployeesClient>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
-            services.AddTransient<IProductData, SqlProductData>();
-            services.AddTransient<IOrdersService, SqlOrdersService>();
+            services.AddTransient<IProductData, ProductsClient>();
+            services.AddTransient<IOrdersService, OrdersClient>();
 
             services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
@@ -71,8 +76,9 @@ namespace WebStore
             });
             //Настройки для корзины
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddTransient<ICartService, CookieCartService>();
+            services.AddScoped<ICartService, CookieCartService>();
 
+            
 
 
 

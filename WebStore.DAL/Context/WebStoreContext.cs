@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using WebStore.DomainNew.Models;
+using WebStore.DomainNew.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WebStore.DAL.Context
