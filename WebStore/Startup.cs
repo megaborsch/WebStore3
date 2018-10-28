@@ -8,17 +8,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebStore.DAL.Context;
+//using WebStore.DAL.Context;
 using WebStore.DomainNew.Entities;
-using Microsoft.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
 using WebStore.Clients.Services.Employees;
 using WebStore.Clients.Services.Products;
 using WebStore.Clients.Services.Orders;
+using WebStore.Clients.Services.Users;
 //using WebStore.Clients.Services.Products;
-using WebStore.Services.Sql;
+//using WebStore.Services.Sql;
 using WebStore.Interfaces.Services;
+using WebStore.Interfaces.Api;
 using WebStore.Infrastructure.Implementations;
-using WebStore.DomainNew.Entities;
+//using WebStore.DomainNew.Entities;
 
 namespace WebStore
 {
@@ -41,11 +43,23 @@ namespace WebStore
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddTransient<IProductData, ProductsClient>();
             services.AddTransient<IOrdersService, OrdersClient>();
+            services.AddTransient<IUsersClient, UsersClient>();
 
-            services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IUserStore<User>, UsersClient>();
+            services.AddTransient<IUserRoleStore<User>, UsersClient>();
+            services.AddTransient<IUserClaimStore<User>, UsersClient>();
+            services.AddTransient<IUserPasswordStore<User>, UsersClient>();
+            services.AddTransient<IUserTwoFactorStore<User>, UsersClient>();
+            services.AddTransient<IUserEmailStore<User>, UsersClient>();
+            services.AddTransient<IUserPhoneNumberStore<User>, UsersClient>();
+            services.AddTransient<IUserLoginStore<User>, UsersClient>();
+            services.AddTransient<IUserLockoutStore<User>, UsersClient>();
+            services.AddTransient<IRoleStore<IdentityRole>, RolesClient>();
+
+            //services.AddDbContext<WebStoreContext>(options => options.UseSqlServer(
+            //    Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<WebStoreContext>()
+                //.AddEntityFrameworkStores<WebStoreContext>()
                 .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
