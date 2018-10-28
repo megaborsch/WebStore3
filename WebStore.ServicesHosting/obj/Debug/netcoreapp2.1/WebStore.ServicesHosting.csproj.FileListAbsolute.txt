@@ -21,3 +21,6 @@ F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\bin\De
 F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\obj\Debug\netcoreapp2.1\WebStore.ServicesHosting.csprojAssemblyReference.cache
 F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\bin\Debug\netcoreapp2.1\WebStore.Services.pdb
 F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\obj\Debug\netcoreapp2.1\WebStore.ServicesHosting.csproj.CopyComplete
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\bin\Debug\netcoreapp2.1\log4net.config
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\bin\Debug\netcoreapp2.1\WebStore.Logger.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.ServicesHosting\bin\Debug\netcoreapp2.1\WebStore.Logger.pdb

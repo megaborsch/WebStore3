@@ -16,6 +16,8 @@ using WebStore.Services.InMemory;
 using WebStore.Services.Sql;
 using Microsoft.AspNetCore.Identity;
 using WebStore.DomainNew.Entities;
+using WebStore.Logger;
+using WebStore.Services.Middleware;
 
 namespace WebStore.ServicesHosting
 {
@@ -49,12 +51,15 @@ namespace WebStore.ServicesHosting
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
             app.UseMvc();
         }

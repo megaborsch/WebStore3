@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 //using WebStore.DAL.Context;
 using WebStore.DomainNew.Entities;
 //using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ using WebStore.Interfaces.Services;
 using WebStore.Interfaces.Api;
 using WebStore.Infrastructure.Implementations;
 //using WebStore.DomainNew.Entities;
+using WebStore.Logger;
+using WebStore.Services.Middleware;
 
 namespace WebStore
 {
@@ -100,16 +103,22 @@ namespace WebStore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net();
+
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            else
+                app.UseExceptionHandler("/Home/Error");
 
             app.UseStaticFiles();
             app.UseWelcomePage("/welcome");
             app.UseAuthentication();
+            app.UseStatusCodePagesWithRedirects("~/home/errorstatus/{0}");
+
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+
             //var hello = Configuration["CustomHelloWorld"];
             //app.Run(async (context) =>
             //{
