@@ -1,0 +1,9 @@
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\bin\Debug\netcoreapp2.1\WebStore.Logger.deps.json
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\bin\Debug\netcoreapp2.1\WebStore.Logger.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.csprojAssemblyReference.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.csproj.CoreCompileInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.AssemblyInfoInputs.cache
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.AssemblyInfo.cs
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\bin\Debug\netcoreapp2.1\WebStore.Logger.pdb
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.dll
+F:\YandexDisk\Documents\GeekBrains\NET\WebStore3\WebStore.Logger\obj\Debug\netcoreapp2.1\WebStore.Logger.pdb
