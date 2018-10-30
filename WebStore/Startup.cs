@@ -23,6 +23,7 @@ using WebStore.Interfaces.Api;
 using WebStore.Infrastructure.Implementations;
 //using WebStore.DomainNew.Entities;
 using WebStore.Logger;
+using WebStore.Services;
 using WebStore.Services.Middleware;
 
 namespace WebStore
@@ -93,9 +94,10 @@ namespace WebStore
             });
             //Настройки для корзины
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ICartService, CookieCartService>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartStore, CookiesCartStore>();
 
-            
+
 
 
 
