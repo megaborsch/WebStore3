@@ -32,7 +32,7 @@ namespace WebStore.Tests
         }        [TestMethod]
         public void ContactUs_Returns_View()
         {
-            var result = _controller.ContactUs();
+            var result = _controller.Contact();
             Xunit.Assert.IsType<ViewResult>(result);
         }
 
