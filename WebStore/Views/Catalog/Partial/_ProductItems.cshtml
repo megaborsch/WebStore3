@@ -1,6 +1,8 @@
 ﻿@using WebStore.DomainNew.Models.Product
 @model IEnumerable<WebStore.DomainNew.Models.Product.ProductViewModel>
-
+@{
+    var isBrand = Context.Request.Query.ContainsKey("brandId");
+}
 <div class="features_items">
     <!--features_items-->
     <h2 class="title text-center">Товары</h2>
@@ -10,13 +12,26 @@
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id">
-                            <img src="~/template/images/shop/@item.ImageUrl" alt="" />
-                        </a>
-                        <h2>@item.Price.ToString("C")</h2>
-                        <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id">
-                            <p>@item.Name</p>
-                        </a>
+                        @if (isBrand)
+                        {
+                            <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id" asp-route-fromBrand="true">
+                                <img src="~/template/images/shop/@item.ImageUrl" alt="" />
+                            </a>
+                            <h2>@item.Price.ToString("C")</h2>
+                            <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id" asp-route-fromBrand="true">
+                                <p>@item.Name</p>
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id">
+                                <img src="~/template/images/shop/@item.ImageUrl" alt="" />
+                            </a>
+                            <h2>@item.Price.ToString("C")</h2>
+                            <a asp-controller="Catalog" asp-action="Details" asp-route-id="@item.Id">
+                                <p>@item.Name</p>
+                            </a>
+                        }
                         <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id"
                            asp-route-returnUrl="@Context.Request.Path" class="btn btn-default add-to-cart">
                             <i class="fa fa-shopping-cart"></i>Добавить в корзину
