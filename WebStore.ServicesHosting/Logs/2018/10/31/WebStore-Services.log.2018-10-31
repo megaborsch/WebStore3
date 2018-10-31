@@ -274,3 +274,7 @@ Error Number:4060,State:1,Class:11
 
 2018-10-31 23:13:48,196 [9] ?     - The Include operation for navigation '[c].Section' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
 
+2018-10-31 23:37:05,540 [7] ?     - The Include operation for navigation '[p].Brand' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+
+2018-10-31 23:37:05,591 [7] ?     - The Include operation for navigation '[p].Section' is unnecessary and was ignored because the navigation is not reachable in the final query results. See https://go.microsoft.com/fwlink/?linkid=850303 for more information.
+
