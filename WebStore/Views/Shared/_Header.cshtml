@@ -69,10 +69,7 @@
                 <div class="col-sm-5">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a asp-controller="Employee" asp-action="Index"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a asp-controller="Home" asp-action="Checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a asp-controller="Employee" asp-action="Index"><i class="fa fa-user" is-active-route></i> Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,26 +95,14 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li class="dropdown">
-                                <a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Catalog" asp-action="Shop">Products</a></li>
-                                    <li><a asp-controller="Catalog" asp-action="Details">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="Checkout">Checkout</a></li>
-                                    <li><a asp-controller="Home" asp-action="Cart">Cart</a></li>
-                                    <li><a asp-controller="Home" asp-action="Login">Login</a></li>
-                                </ul>
+                            <li><a is-active-route asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li>
+                                <a is-active-route ignore-action asp-controller="Catalog" asp-action="Shop">Shop</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a asp-controller="Home" asp-action="Blog">Blog List</a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogSingle">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a asp-controller="Home" asp-action="NotFound">404</a></li>
-                            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                            <li><a is-active-route asp-controller="Home" asp-action="Blog">Blog List</a></li>
+                            <li><a is-active-route asp-controller="Home" asp-action="BlogSingle">Blog Single</a></li>
+                            <li><a asp-controller="Home" asp-action="NotFound" is-active-route>404</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact" is-active-route>Contact</a></li>
                         </ul>
                     </div>
                 </div>
