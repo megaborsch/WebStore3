@@ -52,11 +52,22 @@
         <script src="~/template/js/price-range.js"></script>
         <script src="~/template/js/jquery.prettyPhoto.js"></script>
         <script src="~/template/js/main.js"></script>
+        <script src="~/template/js/cart/CartLogic.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="~/template/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <!--Секция для отображения кастомных скриптов, если понадобятся-->
+    <script type="text/javascript">
+        $(function() {
+            Cart.init({
+                addToCartLink: '@Url.Action("AddToCart","Cart")',
+                getCartViewLink: '@Url.Action("GetCartView", "Cart")',
+                removeFromCartLink: '@Url.Action("RemoveFromCart","Cart")',
+                decrementLink : '@Url.Action("DecrementFromCart", "Cart")'
+            });
+        });
+    </script>
     @await RenderSectionAsync("scripts", false)
 </body>
         </html>
