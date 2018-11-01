@@ -43,7 +43,7 @@ namespace WebStore.Interfaces.Services
         /// </summary>
         /// <param name="filter">Фильтр товаров</param>
         /// <returns></returns>
-        IEnumerable<ProductDto> GetProducts(ProductFilter filter);
+        PagedProductDto GetProducts(ProductFilter filter);
         
 
         /// <summary>

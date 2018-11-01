@@ -107,7 +107,7 @@ namespace WebStore.Infrastructure.Implementations
             var products = _productData.GetProducts(new ProductFilter()
             {
                 Ids = _cartStore.Cart.Items.Select(i => i.ProductID).ToList()
-            }).Select(p => new ProductViewModel()
+            }).Products.Select(p => new ProductViewModel()
             {
                 Id = p.Id,
                 ImageUrl = p.ImageUrl,
@@ -127,7 +127,7 @@ namespace WebStore.Infrastructure.Implementations
             var orderItems = _productData.GetProducts(new ProductFilter()
             {
                 Ids = _cartStore.Cart.Items.Select(i => i.ProductID).ToList()
-            }).Select(p => new OrderItemDto()
+            }).Products.Select(p => new OrderItemDto()
             {
                 Id = p.Id,
                 Price = p.Price,

@@ -11,5 +11,6 @@ namespace WebStore.DomainNew.Models.Product
         public int? SectionId { get; set; }
 
         public IEnumerable<ProductViewModel> Products { get; set; }
+        public PageViewModel PageViewModel { get; set; }
     }
 }
