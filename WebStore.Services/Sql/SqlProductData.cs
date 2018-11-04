@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.DAL.Context;
 using WebStore.DomainNew.Filters;
+using WebStore.DomainNew.Dto;
 using WebStore.DomainNew.Dto.Product;
 using WebStore.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
+using WebStore.DomainNew.Entities;
 
 namespace WebStore.Services.Sql
 {
@@ -19,77 +21,29 @@ namespace WebStore.Services.Sql
             _context = context;
         }
 
-        public IEnumerable<SectionDto> GetSections()
+        public IEnumerable<Section> GetSections()
         {
-            return _context.Sections.Select(s => new SectionDto()
-            {
-                Id = s.Id,
-                Name = s.Name,
-                Order = s.Order,
-                ParentId = s.ParentId
-            }).ToList();
+            return _context.Sections.ToList();
         }
 
-        public SectionDto GetSectionById(int id)
+        public Section GetSectionById(int id)
         {
-            var section = _context.Sections.FirstOrDefault(c => c.Id == id);
-            if (section != null)
-            {
-                return new SectionDto()
-                {
-                    Id = section.Id,
-                    Name = section.Name,
-                    ParentId = section.ParentId,
-                    Order = section.Order
-                };
-            }
-            return null;
+            return _context.Sections.FirstOrDefault(s => s.Id == id);
         }
 
-        public IEnumerable<BrandDto> GetBrands()
+        public IEnumerable<Brand> GetBrands()
         {
-            return _context.Brands.Select(b => new BrandDto()
-            {
-                Id = b.Id,
-                Name = b.Name,
-                Order = b.Order
-            }).ToList();
+            return _context.Brands.ToList();
         }
 
-        public BrandDto GetBrandById(int id)
+        public Brand GetBrandById(int id)
         {
-            var brand = _context.Brands.FirstOrDefault(b => b.Id == id);
-
-            if (brand != null)
-            {
-                return new BrandDto()
-                {
-                    Id = brand.Id,
-                    Name = brand.Name,
-                    Order = brand.Order
-                };
-            }
-            return null;
+            return _context.Brands.FirstOrDefault(s => s.Id == id);
         }
-        //public IEnumerable<Product> GetProducts(ProductFilter filter)
-        //{
-        //    var query = _context.Products.AsQueryable();
 
-        //    if (filter.BrandId.HasValue)
-        //        query = query.Where(c => c.BrandId.HasValue && c.BrandId.Value.Equals(filter.BrandId.Value));
-        //    if (filter.SectionId.HasValue)
-        //        query = query.Where(c => c.SectionId.Equals(filter.SectionId.Value));
-
-        //    return query.ToList();
-        //}
         public PagedProductDto GetProducts(ProductFilter filter)
         {
             var query = _context.Products.Include("Brand").Include("Section").AsQueryable();
-            if (filter.Ids !=null && filter.Ids.Count > 0)
-            {
-                query = query.Where(c => filter.Ids.Contains(c.Id));
-            }
-            
 
             if (filter.BrandId.HasValue)
                 query = query.Where(c => c.BrandId.HasValue && c.BrandId.Value.Equals(filter.BrandId.Value));
@@ -102,7 +56,7 @@ namespace WebStore.Services.Sql
             };
             if (filter.PageSize.HasValue)
             {
-                model.Products = query.OrderBy(c => c.Order).Skip((filter.Page - 1) * filter.PageSize.Value).Take(filter.PageSize.Value)
+                model.Products = query.OrderBy(c=>c.Order).Skip((filter.Page - 1) * filter.PageSize.Value).Take(filter.PageSize.Value)
                     .Select(p =>
                         new ProductDto
                         {
@@ -118,19 +72,20 @@ namespace WebStore.Services.Sql
             else
             {
                 model.Products = query.OrderBy(c => c.Order).Select(p =>
-                    new ProductDto
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Order = p.Order,
-                        Price = p.Price,
-                        ImageUrl = p.ImageUrl,
-                        Brand = p.BrandId.HasValue ? new BrandDto() { Id = p.Brand.Id, Name = p.Brand.Name } : null,
-                        Section = new SectionDto() { Id = p.SectionId, Name = p.Section.Name }
-                    }).ToList();
+                        new ProductDto
+                        {
+                            Id = p.Id,
+                            Name = p.Name,
+                            Order = p.Order,
+                            Price = p.Price,
+                            ImageUrl = p.ImageUrl,
+                            Brand = p.BrandId.HasValue ? new BrandDto() { Id = p.Brand.Id, Name = p.Brand.Name } : null,
+                            Section = new SectionDto() { Id = p.SectionId, Name = p.Section.Name }
+                        }).ToList();
             }
             return model;
         }
+
         public ProductDto GetProductById(int id)
         {
             var product = _context.Products.Include("Brand").Include("Section").FirstOrDefault(p => p.Id.Equals(id));
@@ -143,60 +98,145 @@ namespace WebStore.Services.Sql
                 ImageUrl = product.ImageUrl,
                 Order = product.Order,
                 Price = product.Price,
-                Section = new SectionDto() { Id = product.SectionId, Name = product.Section.Name, ParentId = product.Section.ParentId, Order = product.Section.Order }
+                Section = new SectionDto() { Id = product.SectionId, Name = product.Section.Name }
             };
             if (product.Brand != null)
                 dto.Brand = new BrandDto()
                 {
                     Id = product.Brand.Id,
-                    Name = product.Brand.Name,
-                    Order = product.Brand.Order
+                    Name = product.Brand.Name
                 };
             return dto;
         }
 
-    //    public void DeleteProductById(int id)
-    //    {
-    //        using (var transaction = _context.Database.BeginTransaction())
-    //        {
-    //            _context.Products.Remove(GetProductById(id));
-    //            _context.SaveChanges();
-    //            transaction.Commit();
-                
-    //        }
+        public SaveResult CreateProduct(ProductDto productDto)
+        {
+            try
+            {
+                var product = new Product()
+                {
+                    BrandId = productDto.Brand?.Id,
+                    SectionId = productDto.Section.Id,
+                    Name = productDto.Name,
+                    ImageUrl = productDto.ImageUrl,
+                    Order = productDto.Order,
+                    Price = productDto.Price
+                };
+                _context.Products.Add(product);
+                _context.SaveChanges();
+                return new SaveResult
+                {
+                    IsSuccess = true
+                };
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return new SaveResult
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>()
+                    {
+                        ex.Message
+                    }
+                };
+            }
+            catch (DbUpdateException ex)
+            {
+                return new SaveResult
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>()
+                    {
+                        ex.Message
+                    }
+                };
+            }
+            catch (Exception e)
+            {
+                return new SaveResult
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>()
+                    {
+                        e.Message
+                    }
+                };
+            }
+        }
 
-    //    }
+        public SaveResult UpdateProduct(ProductDto productDto)
+        {
+            var product = _context.Products.FirstOrDefault(c=>c.Id == productDto.Id);
+            if (product == null)
+            {
+                return new SaveResult()
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>() { "Entity not exist" }
+                };
+            }
 
-    //    public ProductDto CreateProduct(ProductDto product)
-    //    {
-    //        using (var transaction = _context.Database.BeginTransaction())
-    //        {
-    //            if (_context.Products.Last() != null)
-    //            { product.Order = _context.Products.Last().Order + 1; }
-    //            else
-    //            {
-    //                product.Order = 1;
-    //            }
-    //            _context.Products.Add(product);
-            
-    //        _context.SaveChanges();
-    //        transaction.Commit();
-    //        return product;
-    //        }
-    //    }
+            product.BrandId = productDto.Brand.Id;
+            product.SectionId = productDto.Section.Id;
+            product.ImageUrl = productDto.ImageUrl;
+            product.Order = productDto.Order;
+            product.Price = productDto.Price;
+            product.Name = productDto.Name;
+            try
+            {
+                _context.SaveChanges();
+                return new SaveResult
+                {
+                    IsSuccess = true
+                };
+            }
+            catch (Exception e)
+            {
+                return new SaveResult
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>()
+                    {
+                        e.Message
+                    }
+                };
+            }
+        }
 
-    //    public Product EditProduct(Product product)
-    //    {
-    //        using (var transaction = _context.Database.BeginTransaction())
-    //        {
-                
-    //            _context.Products.Update(product);
+        public SaveResult DeleteProduct(int productId)
+        {
+            var product = _context.Products.FirstOrDefault(c=>c.Id == productId);
+            if (product == null)
+            {
+                return new SaveResult()
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>() { "Entity not exist" }
+                };
+            }
 
-    //            _context.SaveChanges();
-    //            transaction.Commit();
-    //            return product;
-    //        }
-    //    }
+            try
+            {
+                _context.Remove(product);
+                _context.SaveChanges();
+                return new SaveResult()
+                {
+                    IsSuccess = true
+                };
+            }
+            catch (Exception e)
+            {
+                return new SaveResult
+                {
+                    IsSuccess = false,
+                    Errors = new List<string>()
+                    {
+                        e.Message
+                    }
+                };
+            }
+
+        }
 
     }
 }
