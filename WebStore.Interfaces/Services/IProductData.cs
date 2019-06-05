@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.DomainNew.Dto;
 using WebStore.DomainNew.Dto.Product;
 using WebStore.DomainNew.Filters;
-
+using WebStore.DomainNew.Entities;
 namespace WebStore.Interfaces.Services
 {
     /// <summary>
@@ -16,35 +17,34 @@ namespace WebStore.Interfaces.Services
         /// Список секций
         /// </summary>
         /// <returns></returns>
-        IEnumerable<SectionDto> GetSections();
+        IEnumerable<Section> GetSections();
 
         /// <summary>
-        /// Секция по Id
+        /// Cекция по Id
         /// </summary>
         /// <param name="id">Id</param>
         /// <returns></returns>
-        SectionDto GetSectionById(int id);
+        Section GetSectionById(int id);
 
         /// <summary>
         /// Список брендов
         /// </summary>
         /// <returns></returns>
-        IEnumerable<BrandDto> GetBrands();
+        IEnumerable<Brand> GetBrands();
 
         /// <summary>
         /// Бренд по Id
         /// </summary>
         /// <param name="id">Id</param>
         /// <returns></returns>
-        BrandDto GetBrandById(int id);
+        Brand GetBrandById(int id);
 
         /// <summary>
-        /// Список товаров
+        /// Список товаров с постраничным разбиением
         /// </summary>
         /// <param name="filter">Фильтр товаров</param>
         /// <returns></returns>
         PagedProductDto GetProducts(ProductFilter filter);
-        
 
         /// <summary>
         /// Продукт
@@ -52,8 +52,27 @@ namespace WebStore.Interfaces.Services
         /// <param name="id">Идентификатор</param>
         /// <returns>Сущность Product, если нашёл, иначе null</returns>
         ProductDto GetProductById(int id);
-        //ProductDto EditProduct(ProductDto Product);
-        //ProductDto CreateProduct(ProductDto Product);
-        //void DeleteProductById(int id);
+
+        /// <summary>
+        /// Создать продукт
+        /// </summary>
+        /// <param name="product">Сущность Product</param>
+        /// <returns></returns>
+        SaveResult CreateProduct(ProductDto product);
+
+        /// <summary>
+        /// Обновить продукт
+        /// </summary>
+        /// <param name="product">Сущность Product</param>
+        /// <returns></returns>
+        SaveResult UpdateProduct(ProductDto product);
+
+        /// <summary>
+        /// Удалить продукт
+        /// </summary>
+        /// <param name="productId">Id продукта</param>
+        /// <returns></returns>
+        SaveResult DeleteProduct(int productId);
+
     }
 }

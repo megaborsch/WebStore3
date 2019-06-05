@@ -12,3 +12,16 @@ WebStore.DAL/obj
 .vs/WebStore/v15/.suo
 .vs/WebStore/DesignTimeBuild/.dtbcache
 NewDataBase_log.ldf
+WebStore/Logs/2019/06/03/WebStore-Ui.log.2019-06-03
+WebStore.Tests/obj/WebStore.Tests.csproj.nuget.g.props
+WebStore.Tests/obj/project.assets.json
+WebStore.ServicesHosting/Logs/2019/06/03/WebStore-Services.log.2019-06-03
+NewDataBase_log.ldf
+NewDataBase.mdf
+.vs/WebStore/v15/.suo
+.vs/WebStore/DesignTimeBuild/.dtbcache
+.vs/WebStore/v15/.suo
+.vs/WebStore/DesignTimeBuild/.dtbcache
+.vs/WebStore/v15/.suo
+NewDataBase.mdf
+NewDataBase_log.ldf

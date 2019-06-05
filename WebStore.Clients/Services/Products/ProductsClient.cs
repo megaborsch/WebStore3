@@ -4,7 +4,9 @@ using System.Net.Http;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using WebStore.Clients.Base;
+using WebStore.DomainNew.Dto;
 using WebStore.DomainNew.Dto.Product;
+using WebStore.DomainNew.Entities;
 using WebStore.DomainNew.Filters;
 using WebStore.Interfaces.Services;
 
@@ -18,33 +20,31 @@ namespace WebStore.Clients.Services.Products
         }
 
         protected sealed override string ServiceAddress { get; set; }
-
-        public IEnumerable<SectionDto> GetSections()
+        public IEnumerable<Section> GetSections()
         {
             var url = $"{ServiceAddress}/sections";
-            var result = Get<List<SectionDto>>(url);
+            var result = Get<List<Section>>(url);
             return result;
         }
 
-        public SectionDto GetSectionById(int id)
+        public Section GetSectionById(int id)
         {
             var url = $"{ServiceAddress}/sections/{id}";
-            var result = Get<SectionDto>(url);
+            var result = Get<Section>(url);
             return result;
         }
 
-        public IEnumerable<BrandDto> GetBrands()
+        public IEnumerable<Brand> GetBrands()
         {
             var url = $"{ServiceAddress}/brands";
-            var result = Get<List<BrandDto>>(url);
+            var result = Get<List<Brand>>(url);
             return result;
-
         }
 
-        public BrandDto GetBrandById(int id)
+        public Brand GetBrandById(int id)
         {
             var url = $"{ServiceAddress}/brands/{id}";
-            var result = Get<BrandDto>(url);
+            var result = Get<Brand>(url);
             return result;
         }
 
@@ -62,5 +62,30 @@ namespace WebStore.Clients.Services.Products
             var result = Get<ProductDto>(url);
             return result;
         }
+
+        public SaveResult CreateProduct(ProductDto productDto)
+        {
+            var url = $"{ServiceAddress}/create";
+            var response = Post(url, productDto);
+            var result = response.Content.ReadAsAsync<SaveResult>().Result;
+            return result;
+        }
+
+        public SaveResult UpdateProduct(ProductDto productDto)
+        {
+            var url = $"{ServiceAddress}";
+            var response = Put(url, productDto);
+            var result = response.Content.ReadAsAsync<SaveResult>().Result;
+            return result;
+        }
+
+        public SaveResult DeleteProduct(int productId)
+        {
+            var url = $"{ServiceAddress}/{productId}";
+            var response = DeleteAsync(url).Result;
+            var result = response.Content.ReadAsAsync<SaveResult>().Result;
+            return result;
+        }
+
     }
 }
